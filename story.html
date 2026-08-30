@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Our Little Table</title>
+<script>
+  var id = new URLSearchParams(location.search).get('id');
+  location.replace('index.html#/story/' + (id || ''));
+</script>
+</head>
+<body></body>
+</html>
