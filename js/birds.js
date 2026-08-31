@@ -35,24 +35,26 @@
     const flock = document.createElement('div');
     flock.className = 'bird-flock';
 
-    const width = 130 + Math.random() * 110; // overall flock footprint, in px
-    const topPct = 6 + Math.random() * 30;   // upper part of the sky, below the nav pill
-    const duration = 22 + Math.random() * 14; // 22–36s to cross the screen
+    const width = 260 + Math.random() * 240; // overall flock footprint, in px — wide enough for a real crowd
+    const topPct = 5 + Math.random() * 30;   // upper part of the sky, below the nav pill
+    const duration = 26 + Math.random() * 16; // 26–42s to cross the screen (a bit slower, since there's more to see)
     const ltr = Math.random() < 0.5;
-    const birdCount = 9 + Math.floor(Math.random() * 8); // 9–16 birds per flock
+    const birdCount = 24 + Math.floor(Math.random() * 16); // 24–39 birds per flock — a proper large group
 
     flock.style.width = width + 'px';
-    flock.style.height = (width * 0.7) + 'px';
+    flock.style.height = (width * 0.55) + 'px';
     flock.style.top = topPct + 'vh';
     flock.style.left = '0';
     flock.style.animation = `${ltr ? 'fly-across-ltr' : 'fly-across-rtl'} ${duration}s linear forwards`;
 
     // loosely cluster birds within the flock's footprint, roughly
-    // V/blob-shaped rather than a rigid grid, echoing a real flock
+    // V/blob-shaped rather than a rigid grid, echoing a real flock.
+    // Smaller individual birds than before so a much bigger count still
+    // reads as distinct pigeons rather than one overlapping smudge.
     for (let i = 0; i < birdCount; i++) {
-      const clusterX = 10 + Math.random() * 80;
-      const clusterY = 15 + Math.random() * 65;
-      const scale = 16 + Math.random() * 12;
+      const clusterX = 3 + Math.random() * 94;
+      const clusterY = 6 + Math.random() * 88;
+      const scale = 11 + Math.random() * 9;
       flock.appendChild(buildBird(clusterX, clusterY, scale));
     }
 
