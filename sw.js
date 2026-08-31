@@ -5,7 +5,7 @@
 //
 // Bump CACHE_VERSION whenever you push a real content/code update so
 // returning visitors pick up the new files instead of a stale cache.
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v10';
 const SHELL_CACHE = `shell-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `runtime-${CACHE_VERSION}`;
 
@@ -69,9 +69,16 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(req)
         .then((res) => {
-          caches.open(SHELL_CACHE).then((cache) => cache.put('./index.html', res.clone()));
-          return res;
-        })
+		  if (res.ok) {
+			const responseToCache = res.clone();
+
+			caches.open(RUNTIME_CACHE).then((cache) => {
+			  cache.put(req, responseToCache);
+			});
+		  }
+
+		  return res;
+		})
         .catch(() => caches.match('./index.html'))
     );
     return;
