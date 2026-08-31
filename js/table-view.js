@@ -99,6 +99,12 @@ var TableView = (function () {
     let startX, startY, startLeftPct, startTopPx, moved, containerW;
 
     card.addEventListener('pointerdown', (e) => {
+      // let the "View full diary" link behave like a normal link — if we
+      // preventDefault()/capture the pointer here, the click never reaches
+      // the anchor and pointerup just re-flips the card instead of
+      // navigating.
+      if (e.target.closest('.back-link')) return;
+
       e.preventDefault();
       card.setPointerCapture(e.pointerId);
       containerW = surface.clientWidth;
