@@ -28,8 +28,10 @@ var TimelineView = (function () {
 
   // accelerates quickly into place rather than a linear crawl —
   // this is what makes the reveal feel snappy without hard-snapping
-  function easeOutCubic(t) {
-    return 1 - Math.pow(1 - t, 3);
+  function easeInOutCubic(t) {
+    return t < 0.5
+		? 4 * t * t * t
+		: 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
 
   function build(root) {
@@ -60,14 +62,14 @@ var TimelineView = (function () {
       const count = album.photos.length;
       // shorter scroll room than the original build — the main lever
       // for making the reveal feel snappier rather than long and slow
-      const vhBase = isMobile ? 170 : 190;
-      const vhPerExtra = isMobile ? 22 : 26;
+      const vhBase = isMobile ? 260 : 300;
+      const vhPerExtra = isMobile ? 55 : 65;
       const sectionVh = Math.min(vhBase + Math.max(0, count - 1) * vhPerExtra, 460);
 
       // gather finishes earlier in the scroll range, so photos land
       // sooner per unit of scroll/swipe
-      const gatherFrac = Math.min(0.16 + count * 0.045, 0.46);
-      const exitStart = 0.78;
+      const gatherFrac = Math.min(0.62 + count * 0.025, 0.72);
+      const exitStart = 0.88;
 
       album.gatherFrac = gatherFrac;
       album.exitStart = exitStart;
@@ -90,13 +92,13 @@ var TimelineView = (function () {
       album.photos.forEach((moment, i) => {
         const card = buildMomentCard(moment);
 
-        const sx = (seeded(moment.id, 1) - 0.5) * 50;
-        const sy = 170 + seeded(moment.id, 2) * 70;
-        const srot = (seeded(moment.id, 3) - 0.5) * 24;
+        const sx = (seeded(moment.id, 1) - 0.5) * 110;
+        const sy = 120 + seeded(moment.id, 2) * 130;
+        const srot = (seeded(moment.id, 3) - 0.5) * 18;
 
-        const tx = i * (isMobile ? 3 : 5);
-        const ty = -i * (isMobile ? 3 : 5);
-        const trot = (i % 2 === 0 ? 1 : -1) * (2 + i * 1.4);
+        const tx = i * (isMobile ? 2 : 4);
+        const ty = -i * (isMobile ? 2 : 4);
+        const trot = (i % 2 === 0 ? 1 : -1) * (1.5 + i * 0.8);
 
         card.style.setProperty('--sx', sx.toFixed(1) + 'px');
         card.style.setProperty('--sy', sy.toFixed(1) + 'px');
@@ -148,10 +150,10 @@ var TimelineView = (function () {
 
       album.cardEls.forEach((card, i) => {
         const li = Math.max(0, Math.min(1, gp * count - i));
-        card.style.setProperty('--lgp', easeOutCubic(li));
+        card.style.setProperty('--lgp', easeInOutCubic(li));
       });
 
-      const hp = Math.max(0, Math.min(1, r / 0.06));
+      const hp = Math.max(0, Math.min(1, gp));
       const ep = Math.max(0, Math.min(1, (r - album.exitStart) / (1 - album.exitStart)));
 
       stage.style.setProperty('--hp', hp);

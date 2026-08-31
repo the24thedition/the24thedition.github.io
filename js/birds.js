@@ -19,15 +19,21 @@
 
   function buildBird(left, top, scale) {
     const wrap = document.createElement('div');
-    wrap.style.position = 'absolute';
-    wrap.style.left = left + '%';
-    wrap.style.top = top + '%';
     wrap.innerHTML = BIRD_SVG(scale);
     const bird = wrap.firstElementChild;
+    bird.style.left = left + '%';
+    bird.style.top = top + '%';
     bird.style.setProperty('--flap-dur', (0.34 + Math.random() * 0.22).toFixed(2) + 's');
     bird.style.setProperty('--flap-delay', (Math.random() * 0.4).toFixed(2) + 's');
     bird.style.setProperty('--bob-dur', (1.2 + Math.random() * 1.1).toFixed(2) + 's');
     bird.style.setProperty('--bob-delay', (Math.random() * 1).toFixed(2) + 's');
+
+    // Give every pigeon its own gentle horizontal/vertical drift so the
+    // flock breathes and changes shape while the whole flock crosses.
+    bird.style.setProperty('--drift-x', ((Math.random() - 0.5) * 180).toFixed(0) + 'px');
+    bird.style.setProperty('--drift-y', ((Math.random() - 0.5) * 90).toFixed(0) + 'px');
+    bird.style.setProperty('--drift-dur', (4.5 + Math.random() * 4).toFixed(2) + 's');
+    bird.style.setProperty('--drift-delay', (Math.random() * 3).toFixed(2) + 's');
     return bird;
   }
 
@@ -35,26 +41,25 @@
     const flock = document.createElement('div');
     flock.className = 'bird-flock';
 
-    const width = 260 + Math.random() * 240; // overall flock footprint, in px — wide enough for a real crowd
+    const width = 600 + Math.random() * 300; // overall flock footprint, in px — wide enough for a real crowd
     const topPct = 5 + Math.random() * 30;   // upper part of the sky, below the nav pill
     const duration = 26 + Math.random() * 16; // 26–42s to cross the screen (a bit slower, since there's more to see)
     const ltr = Math.random() < 0.5;
-    const birdCount = 24 + Math.floor(Math.random() * 16); // 24–39 birds per flock — a proper large group
+    const birdCount = 10 + Math.floor(Math.random() * 7); // 10–16 birds per flock — loose enough to read as individual pigeons
 
     flock.style.width = width + 'px';
-    flock.style.height = (width * 0.55) + 'px';
+    flock.style.height = width + 'px';
     flock.style.top = topPct + 'vh';
     flock.style.left = '0';
     flock.style.animation = `${ltr ? 'fly-across-ltr' : 'fly-across-rtl'} ${duration}s linear forwards`;
 
-    // loosely cluster birds within the flock's footprint, roughly
-    // V/blob-shaped rather than a rigid grid, echoing a real flock.
-    // Smaller individual birds than before so a much bigger count still
-    // reads as distinct pigeons rather than one overlapping smudge.
+    // Loosely cluster birds within the flock's footprint. Each bird then
+    // gets its own independent drift in CSS, so the formation naturally
+    // spreads and compresses instead of moving as one rigid object.
     for (let i = 0; i < birdCount; i++) {
       const clusterX = 3 + Math.random() * 94;
       const clusterY = 6 + Math.random() * 88;
-      const scale = 11 + Math.random() * 9;
+      const scale = 24 + Math.random() * 12;
       flock.appendChild(buildBird(clusterX, clusterY, scale));
     }
 
@@ -67,7 +72,7 @@
   }
 
   function scheduleNext() {
-    const delay = 25000 + Math.random() * 35000; // next flock in 25–60s
+    const delay = 5000; // next flock in 25–60s
     setTimeout(spawnFlock, delay);
   }
 

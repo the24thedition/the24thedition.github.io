@@ -2,14 +2,14 @@
 // blurb = short text shown on the back of the card when flipped.
 // story = the longer text shown on that moment's own diary page.
 
-const YEAR = 2026; // TODO: confirm the actual year
-const COUPLE_NAMES = "Mohammed & Aya"; // TODO: edit
-const CLOSING_NOTE = "Thanks for looking through our little museum.\nHere's to many more moments like these."; // TODO: edit
+const YEAR = 2026;
+const COUPLE_NAMES = "Mohammed & Aya";
+const CLOSING_NOTE = "Thanks for looking through our little museum.\nHere's to many more moments like these.";
 
 // The passcode for the lock screen, as digits only (e.g. "0517" for a
 // May 17th birthday, or "05171998" if you want month+day+year). The
 // keypad on the lock screen will automatically show this many dots.
-const SITE_PASSCODE = "192002"; // TODO: set this to her birthday
+const SITE_PASSCODE = "192002";
 
 // Background music, played via the little vinyl-record companion that
 // floats near the top of the page — click it to play/pause. Drop your
@@ -21,9 +21,9 @@ const MUSIC_SRC = "music/theme.mp3"; // TODO: add your mp3 to the music/ folder
 // grid of moments — your "how it started" note.
 const ORIGIN_STORY = {
   label: "Encounter",
-  date: "2024.10.13", // TODO: edit to your actual meeting date
+  date: "2026.04.10",
   title: "Meeting the right you at the right time.",
-  text: "Although there wasn't a movie-like encounter, with so many people in the world, meeting at all is a miracle." // TODO: edit
+  text: "It will be the most beautiful red roses I will ever encounter."
 };
 
 // One write-up per DAY that has multiple photos — shown as that day's
@@ -31,11 +31,11 @@ const ORIGIN_STORY = {
 // for May 8th). Days with only one photo just reuse that photo's own
 // story text automatically, so you don't need an entry here for those.
 const DAY_STORIES = {
-  "5-8": "✏️ Write the story of this whole day here — this is the write-up shown next to the stack of all the engagement day photos.",
-  "7-11": "✏️ Write about this day together.",
-  "7-16": "✏️ Write about this day together.",
-  "7-19": "✏️ Write about this day together.",
-  "8-14": "✏️ Write about this day together."
+  "5-8": "The day we were officially engaged doing the engagement the way we wanted with only our beloved families having our sweet moments together.",
+  "7-11": "The day I realized that sunsets aren’t just beautiful; they’re somehow so much more magical when I’m watching them with you.",
+  "7-16": "3ammo please momkn tsebna nenzl the whole week together :D",
+  "7-19": "The day I wanted to express how much your dreams and goals mean to me and they instantly become my to-do list.",
+  "8-14": "Flowers, Rose Paris Coffee, Italian Pasta, Us <3"
 };
 
 const MOMENTS = [
@@ -45,9 +45,9 @@ const MOMENTS = [
     "day": 30,
     "month": 4,
     "monthName": "April",
-    "title": "First Visit",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "First Visit & First Photo",
+    "blurb": "When Somia and Menna forced us to take this photo :D",
+    "story": "That was our first bouquet; after standing on the balcony for a long time searching for a topic to talk about then going to witness the most simple jewelry in the entire world!"
   },
   {
     "id": 2,
@@ -55,9 +55,9 @@ const MOMENTS = [
     "day": 2,
     "month": 5,
     "monthName": "May",
-    "title": "Before Anything",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Zircon or Glass",
+    "blurb": "Doubting every single stone store in Mansheya.",
+    "story": "When we decided to mimic the ring and try to find the perfect stone to use."
   },
   {
     "id": 3,
@@ -65,9 +65,9 @@ const MOMENTS = [
     "day": 5,
     "month": 5,
     "monthName": "May",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Da wala La",
+    "blurb": "Searching for a comfortable fine-looking engagement ring.",
+    "story": "In one of the days where I was going to Mansheya to continue looking for the stone I stopped by an old local store with old 3ammo waiting inside for any customer and said let's buy my ring from this 3ammo."
   },
   {
     "id": 4,
@@ -76,8 +76,8 @@ const MOMENTS = [
     "month": 5,
     "monthName": "May",
     "title": "Not Revealed Yet",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "blurb": "Grey or Beige",
+    "story": "I hesitated to send you this photo that day and then I thought let's save it as a surprise instead :D"
   },
   {
     "id": 5,
@@ -86,8 +86,8 @@ const MOMENTS = [
     "month": 5,
     "monthName": "May",
     "title": "First Time Out",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "blurb": "The good pasta and the bad pizza",
+    "story": "It was our first time going out, I was quite nervous that the spot is not good enough for you."
   },
   {
     "id": 6,
@@ -95,9 +95,9 @@ const MOMENTS = [
     "day": 8,
     "month": 5,
     "monthName": "May",
-    "title": "Engagement Day",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Our Engagement Day",
+    "blurb": "Yalla bena?",
+    "story": "Before coming to our engagement and of course I was nervous. What should I say? What should we do? What are your expectations?"
   },
   {
     "id": 7,
@@ -105,9 +105,9 @@ const MOMENTS = [
     "day": 8,
     "month": 5,
     "monthName": "May",
-    "title": "Engagement Day",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Our Engagement Day",
+    "blurb": "The second bouquet",
+    "story": "I always dreamt of taking this photo with the right one for me! I guess that day came Alhamdullah."
   },
   {
     "id": 8,
@@ -115,9 +115,9 @@ const MOMENTS = [
     "day": 8,
     "month": 5,
     "monthName": "May",
-    "title": "Engagement Day",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Our Engagement Day",
+    "blurb": "Kefaya Sowar ya gama3a :D",
+    "story": "Sora b3enwan marra wahed se3edy :D"
   },
   {
     "id": 9,
@@ -125,9 +125,9 @@ const MOMENTS = [
     "day": 8,
     "month": 5,
     "monthName": "May",
-    "title": "Engagement Day",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Our Engagement Day",
+    "blurb": "Save the date w kda",
+    "story": "After wondering what photos else we should take and then finding this beautiful idea."
   },
   {
     "id": 10,
@@ -135,9 +135,9 @@ const MOMENTS = [
     "day": 8,
     "month": 5,
     "monthName": "May",
-    "title": "Engagement Day",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Our Engagement Day",
+    "blurb": "Authentic w harakat",
+    "story": "After some quite not to much lots of (Cringe laa msh hatsawar de) :D"
   },
   {
     "id": 11,
@@ -145,9 +145,9 @@ const MOMENTS = [
     "day": 8,
     "month": 5,
     "monthName": "May",
-    "title": "Engagement Day",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Our Engagement Day",
+    "blurb": "KFAYA CHOCOLATE YABNY",
+    "story": "You trying to convince me that he's not a hyperactive child and this is only the chocolate effect :D"
   },
   {
     "id": 12,
@@ -155,9 +155,9 @@ const MOMENTS = [
     "day": 8,
     "month": 5,
     "monthName": "May",
-    "title": "Engagement Day",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Our Engagement Day",
+    "blurb": "Beautiful one",
+    "story": "I find this one of our most beautiful photos we have I love it and I love how we look, you were so beautiful and will always be <3."
   },
   {
     "id": 13,
@@ -166,8 +166,8 @@ const MOMENTS = [
     "month": 5,
     "monthName": "May",
     "title": "Second Time Out",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "blurb": "Waiting for you to arrive",
+    "story": "We were trying to get to know each other more and discussing some of our what ifs"
   },
   {
     "id": 14,
@@ -175,9 +175,9 @@ const MOMENTS = [
     "day": 30,
     "month": 5,
     "monthName": "May",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Coffee forever",
+    "blurb": "A bit overrated w meen el nas de kolaha",
+    "story": "Ammar every five minutes (ana 3aref el bnt de) (ya gama3a ento bayneen fl sora) and then he found out that I was in one of his colleagues stories :D"
   },
   {
     "id": 15,
@@ -185,9 +185,9 @@ const MOMENTS = [
     "day": 27,
     "month": 6,
     "monthName": "June",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Let's try Tim's coffee",
+    "blurb": "After telling you that I found a new spot that I'd like us to try",
+    "story": "On that day you told me that you were happy that I knew myself what kind of flower wraps you like the most and I was really happy that you liked them <3."
   },
   {
     "id": 16,
@@ -195,9 +195,9 @@ const MOMENTS = [
     "day": 4,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Hanlbes eh",
+    "blurb": "We were trying to be matchy matchy",
+    "story": "Rose paris? rose paris. This is one of the photos that I love."
   },
   {
     "id": 17,
@@ -205,9 +205,9 @@ const MOMENTS = [
     "day": 11,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Museum? Lunch? Bowling?",
+    "blurb": "I now see flowers differently because of you.",
+    "story": "I thought let's have a planned day and do some activities together. We discovered that the museum is overrated and Ammar can play bowling :D"
   },
   {
     "id": 18,
@@ -215,9 +215,9 @@ const MOMENTS = [
     "day": 11,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Sunset and us",
+    "blurb": "Scattering colors of the sky.",
+    "story": "Let's sit down a little and watch the sunset together <3."
   },
   {
     "id": 19,
@@ -225,19 +225,19 @@ const MOMENTS = [
     "day": 11,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Our most precious moments",
+    "blurb": "We will always love having this moments together.",
+    "story": "I was asking myself how I will be able to witness these moments again alone after that moment."
   },
   {
     "id": 20,
     "image": "photos/20.jpg",
-    "day": 12,
+    "day": 11,
     "month": 7,
     "monthName": "July",
     "title": "After Midnight",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "blurb": "Had ran 3aleko wala lesa? :D",
+    "story": "We were waiting for our turn to play bowling :D."
   },
   {
     "id": 21,
@@ -245,9 +245,9 @@ const MOMENTS = [
     "day": 15,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Villa 9 spot",
+    "blurb": "Helwa el meraya de yalla netsawar",
+    "story": "After going around to know where we can pray and then finally found the spot."
   },
   {
     "id": 22,
@@ -255,9 +255,9 @@ const MOMENTS = [
     "day": 16,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "The best cup of tea",
+    "blurb": "Where we had our best photo our tea and the sunset",
+    "story": "This is one of the most beautiful moments that we had and to many more."
   },
   {
     "id": 23,
@@ -265,9 +265,9 @@ const MOMENTS = [
     "day": 16,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Meen dool",
+    "blurb": "Ya tara kaman sana hanb2a feen?",
+    "story": "Our first video ever waiting for Ammar to try on tshirts <3."
   },
   {
     "id": 24,
@@ -275,19 +275,19 @@ const MOMENTS = [
     "day": 16,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Howa da elkalaam",
+    "blurb": "Where we had our best photo our tea and the sunset",
+    "story": "Msh ma32ol ahla shay fl donia wallahi f kobayat ta2m senny :D"
   },
   {
     "id": 25,
     "image": "photos/25.jpg",
-    "day": 17,
+    "day": 16,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "LC Waikiki and us",
+    "blurb": "Also you trying to figure out what should you get me as a present :D",
+    "story": "After having some coffee and trying to do shopping AKA find what I liked <3."
   },
   {
     "id": 26,
@@ -295,9 +295,9 @@ const MOMENTS = [
     "day": 19,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "The Bouquet and The Yacht",
+    "blurb": "I thought today baby flowers only.",
+    "story": "This is the day that you discoverd (Msh 3arfa ezay baba w ammar msh radyeen y2ololy hagaaa) :D"
   },
   {
     "id": 27,
@@ -305,9 +305,9 @@ const MOMENTS = [
     "day": 19,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Arriving to the yacht",
+    "blurb": "Shaklna lwahdna fl yacht da wala eh :D",
+    "story": "Feeling the pure air around us with the sea waiting for a topic."
   },
   {
     "id": 28,
@@ -315,9 +315,9 @@ const MOMENTS = [
     "day": 19,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Captain's cabin",
+    "blurb": "Eh da we can have a look here?",
+    "story": "We had so much fun in this cabin wondering around capturing everything around us :D"
   },
   {
     "id": 29,
@@ -325,9 +325,9 @@ const MOMENTS = [
     "day": 19,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Meen sahbet el eid melad",
+    "blurb": "Also another sunset together <3",
+    "story": "The moment we were waiting for on that day."
   },
   {
     "id": 30,
@@ -335,9 +335,9 @@ const MOMENTS = [
     "day": 19,
     "month": 7,
     "monthName": "July",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "The sunset and us",
+    "blurb": "Bos ya ammar o2af hna w emsk el mobile kda",
+    "story": "We were trying to capture the sunset with us :D"
   },
   {
     "id": 31,
@@ -345,9 +345,9 @@ const MOMENTS = [
     "day": 14,
     "month": 8,
     "monthName": "August",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Last time before traveling",
+    "blurb": "Enta btsawar eh?",
+    "story": "On that day I had a lot of mixed feelings happiness, gratefulness and so much more."
   },
   {
     "id": 32,
@@ -355,9 +355,9 @@ const MOMENTS = [
     "day": 14,
     "month": 8,
     "monthName": "August",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Maria and The Italian Chef",
+    "blurb": "Hatgebo eh yatara?",
+    "story": "I think that was one of the moments that you really realized how much good food means to me :D."
   },
   {
     "id": 33,
@@ -365,9 +365,9 @@ const MOMENTS = [
     "day": 14,
     "month": 8,
     "monthName": "August",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "After Pasta",
+    "blurb": "Pastaaaa Forevaaaaaa",
+    "story": "I will always love having pasta with you. Each time we have pasta together I realize more that my most favorite pasta is with you."
   },
   {
     "id": 34,
@@ -375,8 +375,8 @@ const MOMENTS = [
     "day": 14,
     "month": 8,
     "monthName": "August",
-    "title": "✏️ Add a title",
-    "blurb": "✏️ Write a short line for the back of this photo.",
-    "story": "✏️ Write the full story of this moment here. This shows up on the dedicated diary page — as long as you'd like."
+    "title": "Trying to catch the sunset",
+    "blurb": "Ella salaty ma akhaleha",
+    "story": "After having a long walk from Maria to Elqa2ed Ebrahim to pray Maghrib."
   }
 ];

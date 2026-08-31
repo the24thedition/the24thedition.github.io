@@ -148,7 +148,7 @@ var TableView = (function () {
   function mount(root) {
     root.innerHTML = `
       <header class="table-header">
-        <h1>Our little moments, forever on this table</h1>
+        <h1>The 24th Virtual Edition</h1>
       </header>
       <p class="table-hint">drag any photo &nbsp;&middot;&nbsp; click to flip &nbsp;&middot;&nbsp; open the full diary from the back</p>
       <div class="table-surface" id="table-surface"></div>
