@@ -1,0 +1,69 @@
+/* Pigeon flock that occasionally drifts across the sunset sky in the
+   background — purely decorative, sits behind everything else. Each
+   bird is a tiny inline SVG with two wing paths that rotate in
+   opposition to fake a real wingbeat, rather than one static image. */
+
+.bird-flock {
+  position: fixed;
+  top: 0;
+  z-index: 0; /* behind all real content (which sits at z-index: 1), above the base paper grain */
+  pointer-events: none;
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.flap-bird {
+  position: absolute;
+  display: block;
+  animation: bird-bob var(--bob-dur, 1.6s) ease-in-out infinite;
+  animation-delay: var(--bob-delay, 0s);
+}
+
+.flap-bird .wing {
+  transform-box: view-box;
+  transform-origin: 0px 0px;
+  fill: none;
+  stroke: #1c1c1c;
+  stroke-linecap: round;
+}
+
+.flap-bird .wing-left {
+  stroke-width: 2.4;
+  animation: flap-left var(--flap-dur, 0.42s) ease-in-out infinite;
+  animation-delay: var(--flap-delay, 0s);
+}
+
+.flap-bird .wing-right {
+  stroke-width: 2.4;
+  animation: flap-right var(--flap-dur, 0.42s) ease-in-out infinite;
+  animation-delay: var(--flap-delay, 0s);
+}
+
+@keyframes flap-left {
+  0%, 100% { transform: rotate(-14deg); }
+  50%      { transform: rotate(24deg); }
+}
+
+@keyframes flap-right {
+  0%, 100% { transform: rotate(14deg); }
+  50%      { transform: rotate(-24deg); }
+}
+
+@keyframes bird-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+@keyframes fly-across-ltr {
+  from { transform: translateX(-30vw); }
+  to   { transform: translateX(130vw); }
+}
+
+@keyframes fly-across-rtl {
+  from { transform: translateX(130vw) scaleX(-1); }
+  to   { transform: translateX(-30vw) scaleX(-1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bird-flock { display: none; }
+}
