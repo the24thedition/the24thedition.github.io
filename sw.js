@@ -5,7 +5,7 @@
 //
 // Bump CACHE_VERSION whenever you push a real content/code update so
 // returning visitors pick up the new files instead of a stale cache.
-const CACHE_VERSION = 'v10';
+const CACHE_VERSION = 'v11';
 const SHELL_CACHE = `shell-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `runtime-${CACHE_VERSION}`;
 

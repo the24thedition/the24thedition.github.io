@@ -1,7 +1,7 @@
 {
-  "name": "Our Little Table",
-  "short_name": "Our Table",
-  "description": "A cozy scrapbook of our moments together.",
+  "name": "The 24th Edition",
+  "short_name": "The 24th Edition",
+  "description": "A museum of our moments together.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
