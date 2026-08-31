@@ -1,0 +1,246 @@
+.table-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2.6rem 1.5rem 1rem;
+}
+
+.table-header .names {
+  font-family: var(--font-hand);
+  font-size: 2rem;
+  color: var(--thread);
+  margin: 0 0 0.2rem;
+}
+
+.table-header h1 {
+  font-family: var(--font-hand);
+  font-weight: 600;
+  font-size: 2.6rem;
+  margin: 0;
+  background: var(--sunset-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(30, 20, 30, 0.28));
+}
+
+.table-hint {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin: 0.6rem auto 1.4rem;
+  text-shadow: 0 1px 4px rgba(30, 20, 30, 0.3); /* holds up against every part of the sunset sky behind it */
+}
+
+/* the scattered "desk" surface — tall, absolutely-positioned children */
+.table-surface {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  /* height is set inline by JS based on layout */
+}
+
+.moment-card {
+  position: absolute;
+  width: 194px;
+  height: 248px;
+  cursor: grab;
+  touch-action: none;
+  perspective: 900px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none; /* stops iOS's long-press "Save Photo" menu from hijacking drags */
+  -webkit-tap-highlight-color: transparent;
+  transform: rotate(var(--rot, 0deg));
+  transition: transform 0.45s cubic-bezier(0.22, 0.9, 0.32, 1), box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+.moment-card:active {
+  cursor: grabbing;
+}
+
+/* straighten + lift smoothly on hover, like flipping through real prints */
+.moment-card:hover:not(.dragging) {
+  transform: rotate(0deg) scale(1.1) translateY(-10px);
+  z-index: 35;
+  box-shadow: 0 22px 38px var(--shadow);
+}
+
+.moment-card .card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.moment-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.moment-card.dragging {
+  z-index: 40;
+  cursor: grabbing;
+  transition: none;
+}
+
+.moment-card .face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 0; /* rectangular, no rounded corners */
+  box-shadow: 0 10px 22px var(--shadow);
+  overflow: hidden;
+}
+
+.moment-card .face-front {
+  background: #fff;
+  padding: 5px; /* thinner "print border" than before */
+  display: flex;
+  flex-direction: column;
+}
+
+.moment-card .card-photo {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.moment-card .card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none; /* the card itself handles drag/click, not the raw <img> */
+}
+
+/* persistent caption under the photo — always visible, no flip needed */
+.moment-card .card-caption {
+  flex-shrink: 0;
+  padding: 7px 4px 3px;
+  text-align: left;
+}
+
+.moment-card .card-caption .card-title {
+  display: block;
+  font-family: var(--font-hand);
+  font-weight: 600;
+  font-size: 1.15rem;
+  line-height: 1.1;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.moment-card .card-caption .card-date {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
+  opacity: 0.75;
+  margin-top: 1px;
+}
+
+.moment-card .face-back {
+  background: var(--paper);
+  transform: rotateY(180deg);
+  padding: 0.9rem 0.9rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.moment-card .face-back .back-date {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+}
+
+.moment-card .face-back .back-title {
+  font-family: var(--font-hand);
+  font-weight: 600;
+  font-size: 1.35rem;
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 0.05rem 0 0.2rem;
+}
+
+.moment-card .face-back .back-blurb {
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--ink-soft);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  flex: 1;
+}
+
+.moment-card .face-back .back-link {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--thread);
+  border-top: 1px dashed rgba(43,52,64,0.2);
+  padding-top: 0.4rem;
+  text-align: center;
+}
+
+.moment-card .face-back .back-link:hover {
+  color: var(--rose);
+}
+
+/* small reset-layout control */
+.table-controls {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.table-controls button {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid rgba(43,52,64,0.25);
+  color: var(--ink-soft);
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.table-controls button:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .table-header h1 { font-size: 2rem; }
+  .moment-card { width: 150px; height: 192px; }
+  .moment-card .card-caption .card-title { font-size: 1rem; }
+  .moment-card .card-caption .card-date { font-size: 0.58rem; }
+}

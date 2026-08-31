@@ -1,0 +1,204 @@
+/* ============================================================
+   Our Little Table — shared design tokens & base styles
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  /* --- palette --- */
+  --linen: #e6ddc4;
+  --linen-deep: #ded1ab;
+  --paper: #f7f1e2;
+  --ink: #2b3440;
+  --ink-soft: #6e5860;
+  --sage: #3fa66d;
+  --sage-deep: #2f7d52;
+  --brass: #f0ad2e;
+  --rose: #ef7d8a;
+  --thread: #ef6a4c;
+  --sky: #3fb6c9;
+  --shadow: rgba(43, 52, 64, 0.22);
+
+  /* warm sunset sweep, used for gradient headings and cheerful accents */
+  --sunset-gradient: linear-gradient(90deg, var(--thread) 0%, var(--rose) 55%, var(--brass) 100%);
+
+  /* --- type --- */
+  --font-hand: 'Caveat', cursive;
+  --font-body: 'Lora', serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --radius-card: 6px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%; /* iOS Safari auto-zooms text otherwise */
+  overscroll-behavior-y: none; /* calmer rubber-banding, fewer surprises on iOS */
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    /* soft glowing sun low in the sky */
+    radial-gradient(circle at 50% 82%, rgba(255, 221, 156, 0.65), transparent 40%),
+    /* age spots / foxing, like an old newsprint page — still present,
+       just a touch lighter so the sky reads through clearly */
+    radial-gradient(ellipse 380px 260px at 8% 12%, rgba(120, 92, 51, 0.07), transparent 60%),
+    radial-gradient(ellipse 420px 300px at 92% 78%, rgba(120, 92, 51, 0.06), transparent 60%),
+    radial-gradient(ellipse 300px 240px at 78% 8%, rgba(120, 92, 51, 0.05), transparent 60%),
+    radial-gradient(ellipse 500px 380px at 15% 95%, rgba(120, 92, 51, 0.06), transparent 60%),
+    /* soft vignette toward the edges */
+    radial-gradient(ellipse 120% 100% at 50% 40%, transparent 55%, rgba(40, 30, 45, 0.12)),
+    /* a real sunset sky — twilight at the top fading through rose and
+       coral down to warm gold near the "horizon" */
+    linear-gradient(180deg, #493b63 0%, #8a4868 26%, #c96a5e 48%, #e8935a 70%, #f3c56b 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* newsprint texture: fibrous noise + faint printed rule lines,
+   built entirely from CSS/SVG so no external asset is needed */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.32;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.16  0 0 0 0 0.13  0 0 0 0 0.09  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(43,32,20,0.035) 0px, rgba(43,32,20,0.035) 1px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(90deg, rgba(43,32,20,0.025) 0px, rgba(43,32,20,0.025) 1px, transparent 1px, transparent 3px);
+}
+
+a { color: inherit; }
+
+a, button {
+  -webkit-tap-highlight-color: transparent; /* no gray flash on tap, iOS default */
+}
+
+/* ---------------- top nav: minimal iOS-style two-tab pill ---------------- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding: calc(1rem + env(safe-area-inset-top)) 0 0.6rem;
+  background: transparent;
+  pointer-events: none; /* only the pill itself should catch clicks */
+}
+
+.site-nav .tab-pill {
+  pointer-events: auto;
+  display: inline-flex;
+  gap: 0.2rem;
+  background: linear-gradient(135deg, rgba(239, 125, 138, 0.16), rgba(240, 173, 46, 0.16));
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(239, 125, 138, 0.25);
+  border-radius: 999px;
+  padding: 0.3rem;
+  box-shadow: 0 6px 18px var(--shadow);
+}
+
+.site-nav .tab-pill a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--thread);
+  padding: 0.5rem 1.3rem;
+  border-radius: 999px;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation; /* snappier taps, no double-tap-zoom */
+}
+
+.site-nav .tab-pill a .tab-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.site-nav .tab-pill a:hover {
+  color: var(--rose);
+  transform: translateY(-1px);
+}
+
+.site-nav .tab-pill a.active {
+  background: var(--sunset-gradient);
+  color: #fffaf2;
+  box-shadow: 0 4px 12px rgba(239, 106, 76, 0.35);
+}
+
+/* ---------------- footer ---------------- */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 3rem 1.5rem calc(4rem + env(safe-area-inset-bottom));
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  color: var(--ink-soft);
+  text-shadow: 0 1px 4px rgba(30, 20, 30, 0.3);
+}
+
+.site-footer .credit {
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sage);
+  text-shadow: 0 1px 3px rgba(30, 20, 30, 0.3);
+}
+
+/* ---------------- focus visibility ---------------- */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--thread);
+  outline-offset: 2px;
+}
+
+/* ---------------- shared "paper card" look ---------------- */
+.paper {
+  background: var(--paper);
+  box-shadow: 0 10px 24px var(--shadow);
+}
