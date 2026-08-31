@@ -122,9 +122,10 @@
 
 .stack-area {
   position: relative;
-  width: 300px;
-  height: 360px;
+  width: 360px;
+  height: 430px;
   flex-shrink: 0;
+  perspective: 1200px;
 }
 
 /* each photo in the stack reuses the same .moment-card component;
@@ -136,6 +137,11 @@
   width: 194px;
   height: 248px;
   margin: -124px 0 0 -97px; /* center the 194x248 card on left/top:50% */
+  transform-origin: center center;
+  will-change: transform, opacity;
+  box-shadow:
+    0 8px 18px rgba(30, 20, 30, 0.16),
+    0 2px 5px rgba(30, 20, 30, 0.10);
   --lgp: 0; /* this card's own arrival progress, 0..1, set per-frame from JS */
   transition: box-shadow 0.3s ease; /* transform/opacity are scroll-driven, not eased */
   opacity: var(--lgp);
